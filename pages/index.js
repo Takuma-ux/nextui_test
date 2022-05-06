@@ -1,6 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { Link, Grid, Card, Text, Row } from "@nextui-org/react";
+
+const LinkCard = ({ url, title, text }) => {
+  return (
+    <>
+      <Link href={url}>
+        <Card clickable bordered>
+          <Text
+            css={{ textGradient: "45deg, $blue500 -20%, $red500 100%" }}
+            h2
+          >{`${title} ->`}</Text>
+          <Text p>{text}</Text>
+        </Card>
+      </Link>
+    </>
+  );
+};
 
 export default function Home() {
   return (
@@ -12,44 +29,64 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
+        <Text size={60} h1>
+          Welcome to{" "}
+          <Link
+            href="https://nextjs.org"
+            css={{ textGradient: "45deg, $purple500 -20%, $pink500 100%" }}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+            Next.js!
+          </Link>
+        </Text>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
+        <Row justify="center" align="center" gap={2}>
+          <Text p size={25}>
+            Get started by editing
+          </Text>
+          <Card
+            hoverable
+            color="gradient"
+            css={{ maxW: 150, alignItems: "center" }}
           >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+            pages/index.js
+          </Card>
+        </Row>
+
+        <Grid.Container
+          gap={2}
+          justify="center"
+          alignItems="center"
+          css={{ maxW: 800, marginTop: 100 }}
+        >
+          <Grid xs={12} md={6} justify="center">
+            <LinkCard
+              url="https://nextjs.org/docs"
+              title="Documentation"
+              text="Find in-depth information about Next.js features and API."
+            />
+          </Grid>
+          <Grid xs={12} md={6} justify="center">
+            <LinkCard
+              url="https://nextjs.org/learn"
+              title="Learn"
+              text="Learn about Next.js in an interactive course with quizzes!"
+            />
+          </Grid>
+          <Grid xs={12} md={6} justify="center">
+            <LinkCard
+              url="https://github.com/vercel/next.js/tree/canary/exampless"
+              title="Examples"
+              text="Discover and deploy boilerplate example Next.js projects."
+            />
+          </Grid>
+          <Grid xs={12} md={6} justify="center">
+            <LinkCard
+              url="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+              title="Deploy"
+              text="Instantly deploy your Next.js site to a public URL with Vercel."
+            />
+          </Grid>
+        </Grid.Container>
       </main>
 
       <footer className={styles.footer}>
@@ -58,12 +95,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
